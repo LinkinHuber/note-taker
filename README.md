@@ -36,7 +36,7 @@ SO THAT I can organize my thoughts and keep track of tasks I need to complete
 
 ## Screenshots of webpage
 ![Screenshot of home page](./public/assets/images/Screenshot%202023-05-07%20172707.png)
-![Screenshot of home page](./public/assets/images/Screenshot%202023-05-11%20174437.png)
+![Screenshot of home page](./public/assets/images/Screenshot%202023-05-12%20002605.png)
 
 ## Questions?
   - If you have any additional questions please feel free to reach out to me!
