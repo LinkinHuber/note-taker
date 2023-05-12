@@ -29,7 +29,7 @@ SO THAT I can organize my thoughts and keep track of tasks I need to complete
 - THEN I am presented with empty fields to enter a new note title and the note’s text in the right-hand column
 
 ## What was the goal of this project?
-- The goal of this project was to create a note taking app that saves notes you take. This was achieved by communicating between the frontend and express.js backend. It required using fetch calls on the frontend and having route listeners setup on the backend to make the data communicate. In turn when you go on the app and you create a new note it is then saved, when you click on the note it will appear on the screen, and will still be there even on page refresh.
+- The goal of this project was to create a note taking app that saves notes you take. This was achieved by communicating between the frontend and express.js backend. It required using fetch calls on the frontend and having route listeners setup on the backend to make the data communicate. In turn when you go on the app and you create a new note it is then saved, when you click on the note it will appear on the screen, and will still be there even on page refresh. You can also delete a note by clicking on the red trashcan icon to the right of the note.
 
 ## Link to deployed heroku application
 - https://note-taker-webapp.herokuapp.com/
