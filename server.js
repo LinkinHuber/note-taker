@@ -11,25 +11,49 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: false }));
 
 
-//Get request for /notes that returns the notes.html file.
+//Get route for '/' that returns the 'index.html' file.
+app.get('/', (req, res) =>
+  res.sendFile(path.join(__dirname, '/public/index.html')),
+);
+
+
+//Get route for '/notes' that returns the 'notes.html' file.
 app.get('/notes', (req, res) =>
   res.sendFile(path.join(__dirname, '/public/notes.html')),
 );
 
 
-//Get request for /api/notes that reads the db.json file and returns either an error if theres an error or if correct it returns all the saved notes as JSON.
-app.get('/api/notes', (req, res) =>
+//Delete route for '/api/notes/:id' that reads all the notes from the db.json file, removes the note with the given id property, and then rewrites the notes to the db.json file.
+app.delete("/api/notes/:id", (req, res) => {
+  fs.readFile("./db/db.json", "utf8", (err, data) => {
+    if(err)
+    return console.log(err);
+    let notes = JSON.parse(data);
+    let readNotes = notes.filter((note) => note.id != req.params.id);
+    fs.writeFile(`./db/db.json`, JSON.stringify(readNotes), (err) =>
+    err
+      ? console.error(err)
+      : console.log('note was successfully deleted')
+    );
+    res.json(readNotes);
+  });
+});
+
+
+//Get route for '/api/notes' that reads the 'db.json' file and returns either an error if theres an error or if correct it returns all the saved notes as JSON.
+app.get('/api/notes', (req, res) => {
   fs.readFile('./db/db.json', 'utf8', (err, data) => {
     if (err) {
-      console.error(err)
+      console.error(err);
     } else {
-      return console.log(data),
-      res.json(JSON.parse(data))
+      console.log(data);
+      res.json(JSON.parse(data));
     }
-}));
+  });
+});
 
 
-//Post request for /api/notes that receives a new note to save on the request body, adds it to the db.json file, and then returns the new note to the client. To achieve this each note is also given a uniquely generated id using a math.random generator.
+//Post route for '/api/notes' that receives a new note to save on the request body, adds it to the 'db.json' file, and then returns the new note to the client. To achieve this each note is also given a uniquely generated id using a math.random generator.
 app.post('/api/notes', (req, res) => {
   console.info(`${req.method} request received to add new note`);
   const { title, text } = req.body;
@@ -37,11 +61,9 @@ app.post('/api/notes', (req, res) => {
     const newnote = {
       title,
       text,
-      note_id: Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1)
+      id: Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1)
     };
-
-
-//This takes the new note reads the db.json file and appends it which will then log either 'Success' or 'Error creating new note.'
+    
     readAndAppend(newnote, './db/db.json');
 
     const response = {
@@ -50,13 +72,13 @@ app.post('/api/notes', (req, res) => {
     };
 
     res.json(response);
-  } else {
-    res.json('Error creating new note');
-  }
+   } else {
+     res.json('Error creating new note');
+   }
 });
 
 
-//This takes the data and then writes to the JSON file given a destination and some content which will then either log error if error or 'Data written to ${destination} if it was a success.
+//This takes the data and then writes to the JSON file given a destination and some content which will then either log error if error or 'Data written to ${destination}' if it was a success.
 const writeToFile = (destination, content) =>
   fs.writeFile(destination, JSON.stringify(content, null, 4), (err) =>
     err ? console.error(err) : console.info(`\nData written to ${destination}`)

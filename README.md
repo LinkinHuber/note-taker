@@ -1,14 +1,17 @@
 # note-taker
 
 ## Table of Contents
-* [Acceptance Criteria](#acceptance-criteria)
+* [User story](#user-story)
+* [Acceptance criteria](#acceptance-criteria)
 * [What was the goal of this project?](#what-was-the-goal-of-this-project)
-* [Installation](#installation)
-* [Usage](#usage) 
-* [Tests](#tests)
-* [Link to the demo video](#link-to-the-demo-video)
+* [Link to deployed heroku application](#link-to-deployed-heroku-application)
 * [Screenshots of webpage](#screenshots-of-webpage)
 * [Questions?](#questions)
+
+## User story
+- AS A small business owner
+I WANT to be able to write and save notes
+SO THAT I can organize my thoughts and keep track of tasks I need to complete
 
 ## Acceptance Criteria
 - GIVEN a note-taking application
@@ -26,24 +29,14 @@
 - THEN I am presented with empty fields to enter a new note title and the note’s text in the right-hand column
 
 ## What was the goal of this project?
-- The goal of this project was to... 
+- The goal of this project was to create a note taking app that saves notes you take. This was achieved by communicating between the frontend and express.js backend. It required using fetch calls on the frontend and having route listeners setup on the backend to make the data communicate. In turn when you go on the app and you create a new note it is then saved, when you click on the note it will appear on the screen, and will still be there even on page refresh.
 
-## Installation
-- 
-
-## Usage 
-- 
-
-## Tests
-- 
-
-## Link to the demo video
-- 
+## Link to deployed heroku application
+- https://note-taker-webapp.herokuapp.com/
 
 ## Screenshots of webpage
-![Screenshot of home page](./)
-![Screenshot of home page](./)
-![Screenshot of home page](./)
+![Screenshot of home page](./public/assets/images/Screenshot%202023-05-07%20172707.png)
+![Screenshot of home page](./public/assets/images/Screenshot%202023-05-11%20174437.png)
 
 ## Questions?
   - If you have any additional questions please feel free to reach out to me!
